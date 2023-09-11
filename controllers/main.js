@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken')
-const CustomAPIError = require("../errors/custom-error")
+const {BadRequest} = require('../errors')
 
 const login = async (req, res) => {
     const {username, password} = req.body
     if(!username || !password){
-        throw new CustomAPIError('Please provide email & password', 400)
+        throw new BadRequest('Please provide email & password')
     }
 
     const id = new Date().getDate()
