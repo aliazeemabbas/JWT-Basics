@@ -4,6 +4,7 @@ const {UnauthenticatedError} = require('../errors');
 const authenticationMiddleware = async (req, res, next) => {
    
     const authHeader = req.headers.authorization;
+
     if(!authHeader || !authHeader.startsWith('Bearer')){
         throw new UnauthenticatedError('No token')
     }
@@ -18,8 +19,6 @@ const authenticationMiddleware = async (req, res, next) => {
     } catch (error) {
         throw new UnauthenticatedError('Not authorized')
     }
-
-    next()
 }
 
 module.exports = authenticationMiddleware
